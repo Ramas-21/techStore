@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 import { useProductStore } from "../store/product";
 import ProductCard from "../components/ProductCard";
 const HomePage = () => {
-
   const { fetchProducts, products } = useProductStore();
 
   useEffect(() => {
     fetchProducts();
-  },[fetchProducts]);
-
+  }, [fetchProducts]);
 
   return (
     <Container maxW="container.xl" py={12}>
@@ -34,28 +32,30 @@ const HomePage = () => {
           spacing={10}
           w={"full"}
         >
-          {products.map((product)=> (
-            <ProductCard key={product._id} product={product}/>
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </SimpleGrid>
 
-        <Text
-          fontSize="xl"
-          textAlign={"center"}
-          fontWeight="bold"
-          color="gray.500"
-        >
-          No Products Found{" "}
-          <Link to={"/create"}>
-            <Text
-              as="span"
-              color="blue.500"
-              _hover={{ textDecoration: "underline" }}
-            >
-              Create a Product
-            </Text>
-          </Link>
-        </Text>
+        {products.length === 0 && (
+          <Text
+            fontSize="xl"
+            textAlign={"center"}
+            fontWeight="bold"
+            color="gray.500"
+          >
+            No Products Found{" "}
+            <Link to={"/create"}>
+              <Text
+                as="span"
+                color="blue.500"
+                _hover={{ textDecoration: "underline" }}
+              >
+                Create a Product
+              </Text>
+            </Link>
+          </Text>
+        )}
       </VStack>
     </Container>
   );
