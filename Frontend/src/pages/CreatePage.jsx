@@ -48,10 +48,9 @@ const CreatePage = () => {
         </Heading>
         <Box
           w={"full"}
-          bg={useColorModeValue("white", "gray.100")}
           p={6}
           rounded={"lg"}
-          shadow={"md"}
+          shadow={"lg"}
         >
           <VStack spacing={4}>
             <Input
